@@ -49,9 +49,9 @@ export default function Dashboard() {
 
         <CategoryTabs active={activeCategory} onChange={setActiveCategory} />
 
-        <div className="p-4 space-y-3">
+        <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-3">
           {scores.length === 0 ? (
-            <div className="text-center py-16">
+            <div className="text-center py-16 md:col-span-2">
               <p className="text-[15px] text-text-muted mb-2">
                 이 카테고리는 아직 추천이 없어요.
               </p>
