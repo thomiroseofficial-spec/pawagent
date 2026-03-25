@@ -95,9 +95,21 @@ ${body.productUrl ? `- 제품 페이지: ${body.productUrl}` : ""}
 
     const scoreResult = JSON.parse(jsonMatch[0]);
 
+    // Validate and clamp score to 0-100 range
+    const totalScore = Math.max(0, Math.min(100, Math.round(Number(scoreResult.totalScore) || 0)));
+    const criteriaResults = Array.isArray(scoreResult.criteriaResults)
+      ? scoreResult.criteriaResults.map((cr: { name?: string; result?: string; detail?: string }) => ({
+          name: String(cr.name || "").slice(0, 100),
+          result: ["pass", "warning", "fail"].includes(cr.result || "") ? cr.result : "warning",
+          detail: String(cr.detail || "").slice(0, 200),
+        }))
+      : [];
+
     return NextResponse.json({
       productName: body.productName,
-      ...scoreResult,
+      totalScore,
+      criteriaResults,
+      reasoning: String(scoreResult.reasoning || "").slice(0, 500),
     });
   } catch (error) {
     return NextResponse.json(

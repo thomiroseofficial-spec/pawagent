@@ -15,9 +15,11 @@ import type { DogProfile, ProductScore } from "@/types";
 export default function Dashboard() {
   const [profile, setProfile] = useState<DogProfile | null>(mockProfile);
   const [onboarded, setOnboarded] = useState(true);
+  const VALID_CATEGORIES = ["사료", "간식 1단계", "간식 2단계", "간식 3단계", "패드", "영양제"];
   const [activeCategory, setActiveCategory] = useState(() => {
     if (typeof window !== "undefined") {
-      return new URLSearchParams(window.location.search).get("tab") || "사료";
+      const tab = new URLSearchParams(window.location.search).get("tab");
+      if (tab && VALID_CATEGORIES.includes(tab)) return tab;
     }
     return "사료";
   });

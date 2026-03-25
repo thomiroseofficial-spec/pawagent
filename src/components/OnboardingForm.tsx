@@ -25,16 +25,20 @@ export default function OnboardingForm({ onComplete }: OnboardingFormProps) {
     );
   };
 
-  const canSubmit = name && breed && birthDate && weight && dietTypes.length > 0;
+  const parsedWeight = parseFloat(weight);
+  const birthDateObj = new Date(birthDate);
+  const isValidWeight = parsedWeight >= 0.5 && parsedWeight <= 80;
+  const isValidDate = birthDate && birthDateObj <= new Date() && birthDateObj >= new Date("2010-01-01");
+  const canSubmit = name && breed && isValidDate && isValidWeight && dietTypes.length > 0;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!canSubmit) return;
     onComplete({
-      name,
-      breed,
+      name: name.slice(0, 50),
+      breed: breed.slice(0, 100),
       birthDate,
-      weight: parseFloat(weight),
+      weight: parsedWeight,
       sex,
       neutered,
       dietTypes,
