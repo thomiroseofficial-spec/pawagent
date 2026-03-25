@@ -28,7 +28,7 @@ export default function CriteriaBar({
       </div>
       <button
         onClick={onEdit}
-        className="text-xs font-semibold text-accent hover:text-accent-hover transition-colors"
+        className="text-xs font-semibold text-accent hover:text-accent-hover transition-colors min-h-[44px] flex items-center"
       >
         기준수정
       </button>

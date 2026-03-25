@@ -39,14 +39,14 @@ export default function ProfileBar({
       <div className="flex gap-2">
         <button
           onClick={onProfileClick}
-          className="w-8 h-8 rounded-[4px] border border-border flex items-center justify-center text-sm text-text-muted hover:border-accent hover:text-accent transition-colors"
+          className="w-11 h-11 rounded-[4px] border border-border flex items-center justify-center text-sm text-text-muted hover:border-accent hover:text-accent transition-colors"
           aria-label="프로필 수정"
         >
           ✎
         </button>
         <button
           onClick={onSettingsClick}
-          className="w-8 h-8 rounded-[4px] border border-border flex items-center justify-center text-sm text-text-muted hover:border-accent hover:text-accent transition-colors"
+          className="w-11 h-11 rounded-[4px] border border-border flex items-center justify-center text-sm text-text-muted hover:border-accent hover:text-accent transition-colors"
           aria-label="설정"
         >
           ⚙

@@ -15,7 +15,7 @@ export default function CategoryTabs({
         <button
           key={cat}
           onClick={() => onChange(cat)}
-          className={`px-4 py-2.5 text-[13px] font-semibold whitespace-nowrap border-b-2 transition-colors ${
+          className={`px-4 py-3 text-[13px] font-semibold whitespace-nowrap border-b-2 transition-colors ${
             active === cat
               ? "text-accent border-accent"
               : "text-text-muted border-transparent hover:text-text-secondary"
