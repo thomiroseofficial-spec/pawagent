@@ -15,7 +15,18 @@ import type { DogProfile, ProductScore } from "@/types";
 export default function Dashboard() {
   const [profile, setProfile] = useState<DogProfile | null>(mockProfile);
   const [onboarded, setOnboarded] = useState(true);
-  const [activeCategory, setActiveCategory] = useState("사료");
+  const [activeCategory, setActiveCategory] = useState(() => {
+    if (typeof window !== "undefined") {
+      return new URLSearchParams(window.location.search).get("tab") || "사료";
+    }
+    return "사료";
+  });
+
+  function handleCategoryChange(category: string) {
+    setActiveCategory(category);
+    const url = category === "사료" ? "/" : `?tab=${encodeURIComponent(category)}`;
+    window.history.replaceState(null, "", url);
+  }
   const [selectedScore, setSelectedScore] = useState<ProductScore | null>(null);
   const [showProfile, setShowProfile] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
@@ -47,7 +58,7 @@ export default function Dashboard() {
 
         <CriteriaBar criteria={mockCriteria} onEdit={() => console.log("edit criteria")} />
 
-        <CategoryTabs active={activeCategory} onChange={setActiveCategory} />
+        <CategoryTabs active={activeCategory} onChange={handleCategoryChange} />
 
         <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-3">
           {scores.length === 0 ? (
