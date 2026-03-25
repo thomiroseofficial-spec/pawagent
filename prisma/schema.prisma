@@ -1,0 +1,114 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model DogProfile {
+  id              String   @id @default(cuid())
+  userId          String
+  name            String
+  breed           String
+  birthDate       DateTime
+  weight          Float
+  sex             String
+  neutered        Boolean  @default(false)
+  dietTypes       String[]
+  grainFree       Boolean  @default(true)
+  additivesLevel  String   @default("minimal")
+  currentFoods    String[] @default([])
+  allergies       String[] @default([])
+  healthNotes     String?
+  trainingStyle   String?
+  preferredBrands String[] @default([])
+  avoidBrands     String[] @default([])
+  monthlyBudget   Int?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  criteria  Criterion[]
+  scores    Score[]
+  feedbacks Feedback[]
+
+  @@map("dog_profiles")
+}
+
+model Criterion {
+  id        String  @id @default(cuid())
+  profileId String
+  name      String
+  weight    Float   @default(0.8)
+  active    Boolean @default(true)
+
+  profile DogProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@map("criteria")
+}
+
+model Product {
+  id             String    @id @default(cuid())
+  name           String
+  brand          String
+  category       String
+  ingredientsRaw String?
+  analysisJson   Json?
+  sourceUrl      String?
+  lastAnalyzed   DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  scores Score[]
+  prices Price[]
+
+  @@map("products")
+}
+
+model Score {
+  id              String   @id @default(cuid())
+  productId       String
+  profileId       String
+  totalScore      Int
+  criteriaResults Json
+  reasoning       String
+  expiresAt       DateTime
+
+  product   Product    @relation(fields: [productId], references: [id], onDelete: Cascade)
+  profile   DogProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  feedbacks Feedback[]
+
+  createdAt DateTime @default(now())
+
+  @@unique([productId, profileId])
+  @@map("scores")
+}
+
+model Price {
+  id          String   @id @default(cuid())
+  productId   String
+  shopName    String
+  price       Int
+  shippingFee Int      @default(0)
+  url         String
+  checkedAt   DateTime @default(now())
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@map("prices")
+}
+
+model Feedback {
+  id        String   @id @default(cuid())
+  scoreId   String
+  profileId String
+  rating    Int
+  reason    String?
+  createdAt DateTime @default(now())
+
+  score   Score      @relation(fields: [scoreId], references: [id], onDelete: Cascade)
+  profile DogProfile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@map("feedback")
+}
