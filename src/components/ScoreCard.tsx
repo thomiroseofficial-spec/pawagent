@@ -101,7 +101,7 @@ export default function ScoreCard({
           href={score.lowestPrice.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="px-3.5 py-2.5 bg-accent text-white rounded-[4px] text-[13px] font-semibold hover:bg-accent-hover transition-colors"
+          className="px-3.5 py-2.5 min-h-[44px] bg-accent text-white rounded-[4px] text-[13px] font-semibold hover:bg-accent-hover transition-colors flex items-center"
           onClick={(e) => e.stopPropagation()}
         >
           구매 →
@@ -116,13 +116,13 @@ export default function ScoreCard({
           <>
             <button
               onClick={() => handleFeedback("up")}
-              className="px-3 py-2.5 border border-border rounded-full text-xs text-text-muted hover:border-accent hover:text-accent transition-colors"
+              className="px-3 py-2.5 min-h-[44px] border border-border rounded-full text-xs text-text-muted hover:border-accent hover:text-accent transition-colors flex items-center"
             >
               👍 맞아요
             </button>
             <button
               onClick={() => handleFeedback("down")}
-              className="px-3 py-2.5 border border-border rounded-full text-xs text-text-muted hover:border-accent hover:text-accent transition-colors"
+              className="px-3 py-2.5 min-h-[44px] border border-border rounded-full text-xs text-text-muted hover:border-accent hover:text-accent transition-colors flex items-center"
             >
               👎 아니에요
             </button>

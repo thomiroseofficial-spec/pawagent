@@ -23,7 +23,7 @@ export default function ProfileBar({
 }) {
   return (
     <div className="flex items-center justify-between px-5 py-4 border-b border-border-light">
-      <button onClick={onProfileClick} className="flex items-center gap-3 text-left min-w-0 flex-1 mr-2">
+      <button onClick={onProfileClick} className="flex items-center gap-3 text-left min-w-0 flex-1 mr-2 min-h-[44px]">
         <div className="w-9 h-9 rounded-full bg-accent-light flex items-center justify-center text-lg shrink-0">
           🐕
         </div>
