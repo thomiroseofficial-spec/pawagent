@@ -35,17 +35,17 @@ export default function ProductDetailSheet({
 
       {/* Reasoning */}
       <div className="mb-5">
-        <h3 className="text-[13px] font-semibold text-text-secondary mb-2">추천 이유</h3>
-        <p className="text-[15px] text-text-secondary leading-relaxed">
+        <h3 className="text-sm font-semibold text-text-secondary mb-2">추천 이유</h3>
+        <p className="text-base text-text-secondary leading-relaxed">
           {score.reasoning}
         </p>
       </div>
 
       {/* Criteria detail table */}
       <div className="mb-5">
-        <h3 className="text-[13px] font-semibold text-text-secondary mb-2">기준별 점수</h3>
+        <h3 className="text-sm font-semibold text-text-secondary mb-2">기준별 점수</h3>
         <div className="border border-border-light rounded-[8px] overflow-hidden">
-          <table className="w-full text-[13px]">
+          <table className="w-full text-sm">
             <thead>
               <tr className="bg-bg">
                 <th className="text-left px-3 py-2 font-semibold text-text-muted">기준</th>
@@ -72,9 +72,9 @@ export default function ProductDetailSheet({
 
       {/* Price comparison */}
       <div className="mb-6">
-        <h3 className="text-[13px] font-semibold text-text-secondary mb-2">가격 비교</h3>
+        <h3 className="text-sm font-semibold text-text-secondary mb-2">가격 비교</h3>
         <div className="border border-border-light rounded-[8px] overflow-hidden">
-          <table className="w-full text-[13px]">
+          <table className="w-full text-sm">
             <thead>
               <tr className="bg-bg">
                 <th className="text-left px-3 py-2 font-semibold text-text-muted">쇼핑몰</th>
@@ -100,7 +100,7 @@ export default function ProductDetailSheet({
             </tbody>
           </table>
         </div>
-        <p className="text-[11px] text-text-faint mt-1.5">
+        <p className="text-2xs text-text-faint mt-1.5">
           가격 기준일: {new Date(score.lowestPrice.checkedAt).toLocaleDateString("ko-KR")}
         </p>
       </div>
@@ -110,7 +110,7 @@ export default function ProductDetailSheet({
         href={score.lowestPrice.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="block w-full py-3 bg-accent text-white text-center rounded-[4px] text-[15px] font-semibold hover:bg-accent-hover transition-colors"
+        className="block w-full py-3 bg-accent text-white text-center rounded-[4px] text-base font-semibold hover:bg-accent-hover transition-colors"
       >
         최저가로 주문하러가기 →
       </a>

@@ -52,13 +52,13 @@ export default function Dashboard() {
         <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-3">
           {scores.length === 0 ? (
             <div className="text-center py-16 md:col-span-2">
-              <p className="text-[15px] text-text-muted mb-2">
+              <p className="text-base text-text-muted mb-2">
                 이 카테고리는 아직 추천이 없어요.
               </p>
-              <p className="text-[13px] text-text-faint mb-4">
+              <p className="text-sm text-text-faint mb-4">
                 기준을 넓히면 더 많은 상품을 찾을 수 있어요.
               </p>
-              <button className="px-4 py-2 text-[13px] font-semibold text-accent border border-accent rounded-[4px] hover:bg-accent-light transition-colors">
+              <button className="px-4 py-2 text-sm font-semibold text-accent border border-accent rounded-[4px] hover:bg-accent-light transition-colors">
                 기준 수정
               </button>
             </div>
@@ -74,7 +74,7 @@ export default function Dashboard() {
           )}
         </div>
 
-        <div className="px-5 py-3 text-[11px] text-text-faint text-center border-t border-border-light">
+        <div className="px-5 py-3 text-2xs text-text-faint text-center border-t border-border-light">
           이 추천은 참고용이며, 건강 문제는 수의사와 상담하세요.
         </div>
       </div>

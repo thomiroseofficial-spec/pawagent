@@ -52,7 +52,7 @@ export default function ScoreCard({
     >
       {/* Header: product name + score badge */}
       <div className="flex items-start justify-between mb-2.5">
-        <h2 className="text-[15px] font-bold text-text-primary leading-tight pr-3">
+        <h2 className="text-base font-bold text-text-primary leading-tight pr-3">
           {score.productName}
         </h2>
         <div className={`text-xl font-extrabold tabular-nums px-2.5 py-0.5 rounded-[4px] shrink-0 ${colors.badge}`}>
@@ -75,7 +75,7 @@ export default function ScoreCard({
           return (
             <span
               key={cr.name}
-              className={`inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[11px] font-medium ${tag.className}`}
+              className={`inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-2xs font-medium ${tag.className}`}
             >
               {tag.icon} {cr.name}
             </span>
@@ -101,7 +101,7 @@ export default function ScoreCard({
           href={score.lowestPrice.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="px-3.5 py-2.5 min-h-[44px] bg-accent text-white rounded-[4px] text-[13px] font-semibold hover:bg-accent-hover transition-colors flex items-center"
+          className="px-3.5 py-2.5 min-h-[44px] bg-accent text-white rounded-[4px] text-sm font-semibold hover:bg-accent-hover transition-colors flex items-center"
           onClick={(e) => e.stopPropagation()}
         >
           구매 →

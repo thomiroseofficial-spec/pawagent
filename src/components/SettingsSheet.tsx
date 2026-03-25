@@ -20,7 +20,7 @@ export default function SettingsSheet({
               Basic (무료)
             </span>
           </div>
-          <p className="text-[13px] text-text-muted mb-3">
+          <p className="text-sm text-text-muted mb-3">
             Premium으로 업그레이드하면 주간 맞춤 추천, 실시간 가격 추적, 자동 구매를 이용할 수 있어요.
           </p>
           <button className="w-full py-2 bg-accent text-white rounded-[4px] text-sm font-semibold hover:bg-accent-hover transition-colors">
@@ -34,7 +34,7 @@ export default function SettingsSheet({
             <span className="text-sm font-semibold">자동승인</span>
             <span className="text-xs text-text-faint">Premium 전용</span>
           </div>
-          <p className="text-[13px] text-text-muted">
+          <p className="text-sm text-text-muted">
             카테고리별로 자동승인을 설정하면 추천 즉시 최저가로 주문됩니다.
           </p>
         </div>
@@ -47,7 +47,7 @@ export default function SettingsSheet({
               <div className="absolute top-1 right-1 w-4 h-4 bg-white rounded-full shadow-sm" />
             </div>
           </div>
-          <p className="text-[13px] text-text-muted mt-1">매주 월요일 오전 9시 카카오톡으로 발송</p>
+          <p className="text-sm text-text-muted mt-1">매주 월요일 오전 9시 카카오톡으로 발송</p>
         </div>
 
         {/* 주문 히스토리 */}

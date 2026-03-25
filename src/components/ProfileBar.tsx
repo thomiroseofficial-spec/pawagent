@@ -28,7 +28,7 @@ export default function ProfileBar({
           🐕
         </div>
         <div className="min-w-0">
-          <h1 className="text-[15px] font-bold text-text-primary truncate">
+          <h1 className="text-base font-bold text-text-primary truncate">
             {profile.name} · {profile.breed} · {getAge(profile.birthDate)}
           </h1>
           <div className="text-xs text-text-muted truncate">

@@ -56,7 +56,7 @@ export default function OnboardingForm({ onComplete }: OnboardingFormProps) {
 
         {/* 이름 */}
         <div className="mb-4">
-          <label className="block text-[13px] font-semibold text-text-secondary mb-1.5">
+          <label className="block text-sm font-semibold text-text-secondary mb-1.5">
             강아지 이름 *
           </label>
           <input
@@ -70,7 +70,7 @@ export default function OnboardingForm({ onComplete }: OnboardingFormProps) {
 
         {/* 견종 */}
         <div className="mb-4">
-          <label className="block text-[13px] font-semibold text-text-secondary mb-1.5">
+          <label className="block text-sm font-semibold text-text-secondary mb-1.5">
             견종 *
           </label>
           <input
@@ -85,7 +85,7 @@ export default function OnboardingForm({ onComplete }: OnboardingFormProps) {
         <div className="grid grid-cols-2 gap-3 mb-4">
           {/* 생년월일 */}
           <div>
-            <label className="block text-[13px] font-semibold text-text-secondary mb-1.5">
+            <label className="block text-sm font-semibold text-text-secondary mb-1.5">
               생년월일 *
             </label>
             <input
@@ -97,7 +97,7 @@ export default function OnboardingForm({ onComplete }: OnboardingFormProps) {
           </div>
           {/* 체중 */}
           <div>
-            <label className="block text-[13px] font-semibold text-text-secondary mb-1.5">
+            <label className="block text-sm font-semibold text-text-secondary mb-1.5">
               체중 (kg) *
             </label>
             <input
@@ -116,7 +116,7 @@ export default function OnboardingForm({ onComplete }: OnboardingFormProps) {
         <div className="grid grid-cols-2 gap-3 mb-4">
           {/* 성별 */}
           <div>
-            <label className="block text-[13px] font-semibold text-text-secondary mb-1.5">성별</label>
+            <label className="block text-sm font-semibold text-text-secondary mb-1.5">성별</label>
             <div className="flex gap-2">
               <button
                 type="button"
@@ -144,7 +144,7 @@ export default function OnboardingForm({ onComplete }: OnboardingFormProps) {
           </div>
           {/* 중성화 */}
           <div>
-            <label className="block text-[13px] font-semibold text-text-secondary mb-1.5">중성화</label>
+            <label className="block text-sm font-semibold text-text-secondary mb-1.5">중성화</label>
             <div className="flex gap-2">
               <button
                 type="button"
@@ -174,7 +174,7 @@ export default function OnboardingForm({ onComplete }: OnboardingFormProps) {
 
         {/* 식사 타입 */}
         <div className="mb-4">
-          <label className="block text-[13px] font-semibold text-text-secondary mb-1.5">
+          <label className="block text-sm font-semibold text-text-secondary mb-1.5">
             식사 타입 * (복수 선택)
           </label>
           <div className="flex flex-wrap gap-2">
@@ -213,7 +213,7 @@ export default function OnboardingForm({ onComplete }: OnboardingFormProps) {
         <button
           type="submit"
           disabled={!canSubmit}
-          className={`w-full py-3 rounded-[4px] text-[15px] font-semibold transition-colors ${
+          className={`w-full py-3 rounded-[4px] text-base font-semibold transition-colors ${
             canSubmit
               ? "bg-accent text-white hover:bg-accent-hover"
               : "bg-border-light text-text-faint cursor-not-allowed"
