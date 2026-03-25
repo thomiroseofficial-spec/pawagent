@@ -14,7 +14,7 @@ function criterionTag(result: CriterionResult) {
     case "pass":
       return { icon: "✓", className: "bg-success-bg text-score-high" };
     case "warning":
-      return { icon: "!", className: "bg-warning-bg text-[#92650A]" };
+      return { icon: "!", className: "bg-warning-bg text-score-mid" };
     case "fail":
       return { icon: "✕", className: "bg-error-bg text-score-low" };
   }
