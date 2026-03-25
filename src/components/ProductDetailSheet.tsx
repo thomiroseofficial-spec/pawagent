@@ -93,7 +93,7 @@ export default function ProductDetailSheet({
                     {formatPrice(p.price)}원
                   </td>
                   <td className="px-3 py-2 text-right tabular-nums text-text-muted">
-                    {p.shippingFee === 0 ? "무료" : `${formatPrice(p.shippingFee)}원`}
+                    {p.shippingFee === 0 ? "무료" : p.shippingFee < 0 ? "확인필요" : `${formatPrice(p.shippingFee)}원`}
                   </td>
                 </tr>
               ))}

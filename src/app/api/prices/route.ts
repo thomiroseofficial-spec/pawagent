@@ -1,5 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
 
+const NAVER_CLIENT_ID = process.env.NAVER_CLIENT_ID;
+const NAVER_CLIENT_SECRET = process.env.NAVER_CLIENT_SECRET;
+
+function fallbackResponse(query: string, searchUrl: string) {
+  return NextResponse.json({
+    query,
+    prices: [{
+      shopName: "네이버 쇼핑",
+      price: 0,
+      shippingFee: -1,
+      url: searchUrl,
+      checkedAt: new Date().toISOString(),
+    }],
+    fallback: true,
+  });
+}
+
 export async function GET(request: NextRequest) {
   try {
     const query = request.nextUrl.searchParams.get("q");
@@ -7,9 +24,38 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Missing query parameter 'q'" }, { status: 400 });
     }
 
-    // Strategy: scrape Naver Shopping search results (no API key needed)
     const searchUrl = `https://search.shopping.naver.com/search/all?query=${encodeURIComponent(query)}&sort=price_asc`;
 
+    // Strategy 1: Use Naver API if keys are configured
+    if (NAVER_CLIENT_ID && NAVER_CLIENT_SECRET) {
+      const apiResponse = await fetch(
+        `https://openapi.naver.com/v1/search/shop.json?query=${encodeURIComponent(query)}&display=5&sort=asc`,
+        {
+          headers: {
+            "X-Naver-Client-Id": NAVER_CLIENT_ID,
+            "X-Naver-Client-Secret": NAVER_CLIENT_SECRET,
+          },
+        }
+      );
+
+      if (apiResponse.ok) {
+        const data = await apiResponse.json();
+        const items = data.items || [];
+        const prices = items.map((item: { mallName?: string; lprice?: string; link?: string }) => ({
+          shopName: item.mallName || "네이버 쇼핑",
+          price: parseInt(item.lprice || "0", 10),
+          shippingFee: -1, // API doesn't provide shipping fee
+          url: item.link || searchUrl,
+          checkedAt: new Date().toISOString(),
+        }));
+        if (prices.length > 0) {
+          return NextResponse.json({ query, prices });
+        }
+      }
+      // API failed — fall through to scraping
+    }
+
+    // Strategy 2: Scrape Naver Shopping search results
     const response = await fetch(searchUrl, {
       headers: {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
@@ -19,18 +65,7 @@ export async function GET(request: NextRequest) {
     });
 
     if (!response.ok) {
-      // Fallback: return search link
-      return NextResponse.json({
-        query,
-        prices: [{
-          shopName: "네이버 쇼핑",
-          price: 0,
-          shippingFee: 0,
-          url: searchUrl,
-          checkedAt: new Date().toISOString(),
-        }],
-        fallback: true,
-      });
+      return fallbackResponse(query, searchUrl);
     }
 
     const html = await response.text();
@@ -77,7 +112,7 @@ export async function GET(request: NextRequest) {
       const prices = priceMatches.map((match, i) => ({
         shopName: mallMatches[i]?.[1] || `쇼핑몰 ${i + 1}`,
         price: parseInt(match[1], 10),
-        shippingFee: 0,
+        shippingFee: -1,
         url: searchUrl,
         checkedAt: new Date().toISOString(),
       })).filter(p => p.price > 0);
@@ -88,17 +123,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Final fallback: return search link
-    return NextResponse.json({
-      query,
-      prices: [{
-        shopName: "네이버 쇼핑",
-        price: 0,
-        shippingFee: 0,
-        url: searchUrl,
-        checkedAt: new Date().toISOString(),
-      }],
-      fallback: true,
-    });
+    return fallbackResponse(query, searchUrl);
 
   } catch (error) {
     return NextResponse.json(

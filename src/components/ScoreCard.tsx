@@ -94,7 +94,7 @@ export default function ScoreCard({
           </span>
           <span className="text-xs text-text-muted">
             {score.lowestPrice.shopName}
-            {score.lowestPrice.shippingFee === 0 ? " · 무료배송" : ""}
+            {score.lowestPrice.shippingFee === 0 ? " · 무료배송" : score.lowestPrice.shippingFee < 0 ? "" : ` · 배송비 ${formatPrice(score.lowestPrice.shippingFee)}원`}
           </span>
         </div>
         <a
