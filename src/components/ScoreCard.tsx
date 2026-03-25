@@ -63,7 +63,7 @@ export default function ScoreCard({
       {/* Score bar */}
       <div className="h-1.5 bg-border-light rounded-full mb-2.5 overflow-hidden">
         <div
-          className={`h-full rounded-full transition-all duration-800 ease-out ${colors.bar}`}
+          className={`h-full rounded-full transition-[width] duration-800 ease-out ${colors.bar}`}
           style={{ width: `${score.totalScore}%` }}
         />
       </div>
