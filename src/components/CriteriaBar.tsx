@@ -14,7 +14,7 @@ export default function CriteriaBar({
   return (
     <div className="flex items-center justify-between px-5 py-3 bg-bg border-b border-border-light">
       <div>
-        <div className="text-xs font-semibold text-text-muted mb-1.5">내 기준</div>
+        <h2 className="text-xs font-semibold text-text-muted mb-1.5">내 기준</h2>
         <div className="flex flex-wrap gap-1.5">
           {active.map((c) => (
             <span

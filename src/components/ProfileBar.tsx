@@ -28,9 +28,9 @@ export default function ProfileBar({
           🐕
         </div>
         <div className="min-w-0">
-          <div className="text-[15px] font-bold text-text-primary truncate">
+          <h1 className="text-[15px] font-bold text-text-primary truncate">
             {profile.name} · {profile.breed} · {getAge(profile.birthDate)}
-          </div>
+          </h1>
           <div className="text-xs text-text-muted truncate">
             {profile.dietTypes.join(" · ")} · {profile.grainFree ? "그레인프리" : ""} · 첨가물{profile.additivesLevel === "none" ? "무" : profile.additivesLevel === "minimal" ? "최소" : "보통"}
           </div>

@@ -52,9 +52,9 @@ export default function ScoreCard({
     >
       {/* Header: product name + score badge */}
       <div className="flex items-start justify-between mb-2.5">
-        <div className="text-[15px] font-bold text-text-primary leading-tight pr-3">
+        <h2 className="text-[15px] font-bold text-text-primary leading-tight pr-3">
           {score.productName}
-        </div>
+        </h2>
         <div className={`text-xl font-extrabold tabular-nums px-2.5 py-0.5 rounded-[4px] shrink-0 ${colors.badge}`}>
           {score.totalScore}
         </div>
