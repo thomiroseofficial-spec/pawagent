@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@source "../../src/**/*.{ts,tsx}";
+@source not "../../benchmark-design/**/*";
 
 @theme {
   /* Background */
