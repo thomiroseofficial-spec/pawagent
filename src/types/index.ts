@@ -36,6 +36,7 @@ export interface Price {
 
 export interface ProductScore {
   id: string;
+  productId?: string;
   productName: string;
   brand: string;
   category: string;
